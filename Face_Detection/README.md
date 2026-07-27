@@ -1,0 +1,1 @@
+Script Python per il riconoscimento facciale in tempo reale tramite webcam, ottimizzato con OpenCV e classificatori Haar Cascade.
