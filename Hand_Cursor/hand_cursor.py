@@ -1,7 +1,7 @@
 import cv2
 import mediapipe as mp # AI per riconoscere le mani
-from mediapipe.tasks import python # Serve per caricare il file scaricato
-from mediapipe.tasks.python import vision # Contiene il "motore" per trovare la mano (coordinate,...)
+from mediapipe.tasks.python import BaseOptions
+from mediapipe.tasks.python.vision import HandLandmarker, HandLandmarkerOptions # vision contiene il "motore" per trovare la mano (coordinate,...)
 import pyautogui # Permette a Python di muovere il mouse e click
 
 ESC_KEY = 27
@@ -11,9 +11,9 @@ CLICK_THRESHOLD = 50
 GREEN = (0, 255, 0)
 YELLOW = (0, 255, 255)
 
-base_options = python.BaseOptions(model_asset_path='hand_landmarker.task') # Indica il percorso del file con le istruzioni per riconoscere le mani
-options = vision.HandLandmarkerOptions(base_options=base_options, num_hands=1) # Limita la ricerca a una sola mano
-detector = vision.HandLandmarker.create_from_options(options) # Avvia il motore di ricerca delle mani utilizzando le opzioni impostate
+base_options = BaseOptions(model_asset_path='hand_landmarker.task') # Indica il percorso del file con le istruzioni per riconoscere le mani
+options = HandLandmarkerOptions(base_options=base_options, num_hands=1) # Limita la ricerca a una sola mano
+detector = HandLandmarker.create_from_options(options) # Avvia il motore di ricerca delle mani utilizzando le opzioni impostate
 
 screen_width, screen_height = pyautogui.size() # Rileva dimensioni dello schermo del computer tramite call con SO
 camera = cv2.VideoCapture(0)
